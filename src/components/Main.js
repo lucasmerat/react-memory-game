@@ -27,8 +27,20 @@ class Main extends Component {
       });
     }
   };
+  checkIfClicked = (id) =>{
+    this.state.chars.forEach(char=>{
+      if(char.id === id){
+        if(char.clicked === false){
+          this.markClicked(id);
+        } else{
+          this.alreadyClicked();
+        }
+      }
+    })
+  }
   markClicked = (id) =>{
     let clickAdjusted = this.state.chars.map(char=>{
+
       if(char.id === id){
         char.clicked = true;
       }
@@ -38,6 +50,9 @@ class Main extends Component {
       chars: clickAdjusted
     })
     this.shuffle();
+  }
+  alreadyClicked = () =>{
+    console.log("Already clicked that one, you loose!")
   }
 
   render() {
@@ -54,7 +69,8 @@ class Main extends Component {
                     id={char.id}
                     image={char.image}
                     name={char.name}
-                    markClicked={this.markClicked}
+                    clicked={char.clicked}
+                    checkIfClicked={this.checkIfClicked}
                   />
                 );
               })}
