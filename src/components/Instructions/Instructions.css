@@ -1,0 +1,20 @@
+.instructions{
+    height:170px;
+    background-color:grey;
+      max-height: 170px; 
+  
+      transition-property: all;
+      transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .instructions.closed {
+      max-height: 0;
+  }
+  
+  .none{
+    display:none;
+  }

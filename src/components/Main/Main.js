@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import chars from "../data/chars.json";
-import Header from "./Header";
-import Character from "./Character.js";
-import Instructions from "./Instructions.js"
+import "./Main.css"
+import chars from "../../data/chars.json";
+import Header from "../Header/Header.js";
+import Character from "../Character/Character.js";
+import Instructions from "../Instructions/Instructions.js"
 
 class Main extends Component {
   state = {

@@ -1,4 +1,5 @@
 import React from "react";
+import "./Character.css"
 
 export default function Character({ id, name, image, clicked, checkIfClicked, incorrect }) {
   return (
