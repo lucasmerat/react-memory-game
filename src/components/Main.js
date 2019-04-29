@@ -39,15 +39,20 @@ class Main extends Component {
     })
   }
   markClicked = (id) =>{
-    let clickAdjusted = this.state.chars.map(char=>{
+    let { chars, score, topScore } = this.state;
+    let clickAdjusted = chars.map(char=>{
 
       if(char.id === id){
         char.clicked = true;
       }
       return char
     });
+    let updatedScore = score + 1;
+    let updatedTopScore = updatedScore > topScore ? updatedScore : topScore
     this.setState({
-      chars: clickAdjusted
+      chars: clickAdjusted, 
+      score: updatedScore, 
+      topScore: updatedTopScore
     })
     this.shuffle();
   }
