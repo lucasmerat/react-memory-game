@@ -7,7 +7,8 @@ class Main extends Component {
   state = {
     chars,
     score: 0,
-    topScore: 0
+    topScore: 0, 
+    message: "Click an image to begin!"
   };
   componentDidMount() {
     this.shuffle();
@@ -52,19 +53,30 @@ class Main extends Component {
     this.setState({
       chars: clickAdjusted, 
       score: updatedScore, 
-      topScore: updatedTopScore
+      topScore: updatedTopScore, 
+      message: "You guessed correctly!"
     })
     this.shuffle();
   }
   alreadyClicked = () =>{
     console.log("Already clicked that one, you loose!")
+    let allUnclicked = this.state.chars.map(char=>{
+      char.clicked = false;
+      return char;
+    })
+    this.setState({
+      score: 0, 
+      chars: allUnclicked, 
+      message: "You already clicked that one! Restarting game..."
+    }, ()=>{
+      this.shuffle();
+    })
   }
 
   render() {
-    console.log(this.state.chars)
     return (
       <div>
-        <Header score={this.state.score} topScore={this.state.topScore} />
+        <Header score={this.state.score} topScore={this.state.topScore} message={this.state.message} />
         <div className="container">
             {this.state.chars &&
               this.state.chars.map(char => {
@@ -76,6 +88,7 @@ class Main extends Component {
                     name={char.name}
                     clicked={char.clicked}
                     checkIfClicked={this.checkIfClicked}
+                    shake={!this.state.score && this.state.topScore}
                   />
                 );
               })}
