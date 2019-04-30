@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./Main.css";
+import "./App.css";
 import chars from "../../data/chars.json";
-import Header from "../Header/Header.js";
-import Footer from "../Footer/Footer.js";
-import Character from "../Character/Character.js";
-import Instructions from "../Instructions/Instructions.js";
+import Header from "../Header";
+import Footer from "../Footer";
+import Character from "../Character";
+import Instructions from "../Instructions";
 
 class Main extends Component {
   state = {
