@@ -1,17 +1,18 @@
 import React, { Component } from "react";
-import "./Main.css"
+import "./Main.css";
 import chars from "../../data/chars.json";
 import Header from "../Header/Header.js";
-import Footer from "../Footer/Footer.js"
+import Footer from "../Footer/Footer.js";
 import Character from "../Character/Character.js";
-import Instructions from "../Instructions/Instructions.js"
+import Instructions from "../Instructions/Instructions.js";
 
 class Main extends Component {
   state = {
     chars,
     score: 0,
     topScore: 0,
-    message: "Click an image to begin!"
+    message: "Click an image to begin!", 
+    update: "Instructions: click characters to get points, but don't click the same one twice, or you'll have to start over again."
   };
   componentDidMount() {
     this.shuffle();
@@ -47,6 +48,7 @@ class Main extends Component {
     let clickAdjusted = chars.map(char => {
       if (char.id === id) {
         char.clicked = true;
+        console.log("You clicked " + char.name)
       }
       return char;
     });
@@ -57,11 +59,14 @@ class Main extends Component {
       score: updatedScore,
       topScore: updatedTopScore,
       message: "You guessed correctly!"
-    });
+    }, ()=>{
+      if(this.state.topScore === 12){
+        this.winGame();
+      }
+    })
     this.shuffle();
   };
   alreadyClicked = () => {
-    console.log("Already clicked that one, you loose!");
     let allUnclicked = this.state.chars.map(char => {
       char.clicked = false;
       return char;
@@ -77,6 +82,18 @@ class Main extends Component {
       }
     );
   };
+  winGame = () =>{
+    let allUnclicked = this.state.chars.map(char => {
+      char.clicked = false;
+      return char;
+    });
+    this.setState({
+      chars: allUnclicked,
+      update: "You got all 12 in a row, you win!!!", 
+      topScore: 0,
+      score: 0
+    })
+  }
 
   render() {
     return (
@@ -86,7 +103,7 @@ class Main extends Component {
           topScore={this.state.topScore}
           message={this.state.message}
         />
-        <Instructions closed={this.state.topScore} />
+        <Instructions closed={this.state.topScore} update={this.state.update} />
         <div className="container">
           {this.state.chars &&
             this.state.chars.map(char => {
