@@ -4,7 +4,7 @@ import './Footer.css'
 export default function Footer() {
   return (
     <div className="footer">
-        CartoonClicky
+       <img className="footer-logo" src="/assets/img/logo.png" alt=""/> <b>CartoonClicky</b>
     </div>
   )
 }
