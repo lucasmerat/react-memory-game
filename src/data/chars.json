@@ -11,9 +11,9 @@
     "name": "Bubbles"
   },{
     "id": 3,
-    "image": "/assets/img/catdog.png",
+    "image": "/assets/img/Rigby.png",
     "clicked": false,
-    "name": "CatDog"
+    "name": "Rigby"
   }, {
     "id": 4,
     "image": "/assets/img/courage.png",

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Main.css"
 import chars from "../../data/chars.json";
 import Header from "../Header/Header.js";
+import Footer from "../Footer/Footer.js"
 import Character from "../Character/Character.js";
 import Instructions from "../Instructions/Instructions.js"
 
@@ -79,7 +80,7 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
+      <div className="main-contain">
         <Header
           score={this.state.score}
           topScore={this.state.topScore}
@@ -102,6 +103,7 @@ class Main extends Component {
               );
             })}
         </div>
+        <Footer />
       </div>
     );
   }

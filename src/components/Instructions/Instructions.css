@@ -18,3 +18,7 @@
   .none{
     display:none;
   }
+
+  .container-instructions{
+      padding-bottom: 0px !important;
+  }

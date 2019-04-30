@@ -13,7 +13,10 @@ code {
     monospace;
 }
 
-img {
-  height: 150px;
-  width:150px;
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
 }
+
