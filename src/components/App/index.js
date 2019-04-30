@@ -6,7 +6,7 @@ import Footer from "../Footer";
 import Character from "../Character";
 import Instructions from "../Instructions";
 
-class Main extends Component {
+class App extends Component {
   state = {
     characters,
     score: 0,
@@ -129,4 +129,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default App;
