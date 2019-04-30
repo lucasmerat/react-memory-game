@@ -4,10 +4,12 @@
     flex-wrap: wrap;
     min-width:50%;
     padding-bottom:160px;
-    min-height:100%;
+    min-height: 100vh;
     margin-top: 50px;
   }
 
   .main-contain{
+    height: auto !important;
+    height: 100%;
     position:relative;
   }

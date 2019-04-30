@@ -14,3 +14,22 @@
     font-size:20px;
   }
   
+
+  @media only screen and (max-width: 500px) {
+    .nav-box{
+        display:block;
+        box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+        height: auto;
+        text-align:center !important;
+    }
+    .header-box-right{
+        text-align: center;
+    }
+    .header-box-left{
+        text-align: center;
+        margin-top:5px;
+    }
+    .header-box-center{
+        font-size: 16px; 
+    }
+  }

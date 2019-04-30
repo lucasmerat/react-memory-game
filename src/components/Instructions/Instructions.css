@@ -22,4 +22,11 @@
 .container-instructions {
   padding-bottom: 0px !important;
   margin-top: 0px !important;
+  min-height: 100% !important;
 }
+
+@media only screen and (max-width: 500px) {
+    .container-instructions > h3 {
+        font-size: 25px;
+      }
+  }
