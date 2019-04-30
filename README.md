@@ -4,7 +4,7 @@
 
 ## Deployed app
 	
-Check out the app [here](https://mongo-music-scraper.herokuapp.com/).
+Check out the app [here](https://react-cartoon-clicky-game.herokuapp.com/).
 
 ## Description
 

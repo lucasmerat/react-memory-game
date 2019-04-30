@@ -1,35 +1,34 @@
-.nav-box{
-    display:flex;
-    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
-    height: 67px;
+.nav-box {
+  display: flex;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  height: 67px;
 }
 
-.logo{
-    height:30px;
-    width:100px;
-    margin-top:2px;
+.logo {
+  height: 30px;
+  width: 100px;
+  margin-top: 2px;
 }
 
-.header-box-center{
-    font-size:20px;
-  }
-  
+.header-box-center {
+  font-size: 20px;
+}
 
-  @media only screen and (max-width: 500px) {
-    .nav-box{
-        display:block;
-        box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
-        height: auto;
-        text-align:center !important;
-    }
-    .header-box-right{
-        text-align: center;
-    }
-    .header-box-left{
-        text-align: center;
-        margin-top:5px;
-    }
-    .header-box-center{
-        font-size: 16px; 
-    }
+@media only screen and (max-width: 500px) {
+  .nav-box {
+    display: block;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    height: auto;
+    text-align: center !important;
   }
+  .header-box-right {
+    text-align: center;
+  }
+  .header-box-left {
+    text-align: center;
+    margin-top: 5px;
+  }
+  .header-box-center {
+    font-size: 16px;
+  }
+}

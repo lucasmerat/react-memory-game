@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import chars from "../../data/chars.json";
+import characters from "../../data/chars.json";
 import Header from "../Header";
 import Footer from "../Footer";
 import Character from "../Character";
@@ -8,18 +8,19 @@ import Instructions from "../Instructions";
 
 class Main extends Component {
   state = {
-    chars,
+    characters,
     score: 0,
     topScore: 0,
-    message: "Click an image to begin!", 
-    update: "Instructions: click characters to get points, but don't click the same one twice, or you'll have to start over again."
+    userMessage: "Click an image to begin!",
+    instructionsMessage:
+      "Instructions: click characters to get points, but don't click the same one twice, or you'll have to start over again."
   };
   componentDidMount() {
     this.shuffle();
   }
   shuffle = () => {
-    if (chars) {
-      const shuffledChars = chars.slice();
+    if (characters) {
+      const shuffledChars = characters.slice();
       for (let i = shuffledChars.length - 1; i > 0; i--) {
         const rand = Math.floor(Math.random() * (i + 1));
         [shuffledChars[i], shuffledChars[rand]] = [
@@ -28,72 +29,74 @@ class Main extends Component {
         ];
       }
       this.setState({
-        chars: shuffledChars
+        characters: shuffledChars
       });
     }
   };
   checkIfClicked = id => {
-    this.state.chars.forEach(char => {
+    this.state.characters.forEach(char => {
       if (char.id === id) {
         if (char.clicked === false) {
-          this.markClicked(id);
+          this.handleCorrect(id);
         } else {
-          this.alreadyClicked();
+          this.handleIncorrect();
         }
       }
     });
   };
-  markClicked = id => {
-    let { chars, score, topScore } = this.state;
-    let clickAdjusted = chars.map(char => {
+  handleCorrect = id => {
+    const { characters, score, topScore } = this.state;
+    const clickAdjusted = characters.map(char => {
       if (char.id === id) {
         char.clicked = true;
-        console.log("You clicked " + char.name)
       }
       return char;
     });
-    let updatedScore = score + 1;
-    let updatedTopScore = updatedScore > topScore ? updatedScore : topScore;
-    this.setState({
-      chars: clickAdjusted,
-      score: updatedScore,
-      topScore: updatedTopScore,
-      message: "You guessed correctly!"
-    }, ()=>{
-      if(this.state.topScore === 12){
-        this.winGame();
+    const updatedScore = score + 1;
+    const updatedTopScore = updatedScore > topScore ? updatedScore : topScore;
+    this.setState(
+      {
+        characters: clickAdjusted,
+        score: updatedScore,
+        topScore: updatedTopScore,
+        userMessage: "You guessed correctly!"
+      },
+      () => {
+        if (this.state.topScore === 12) {
+          this.winGame();
+        }
       }
-    })
+    );
     this.shuffle();
   };
-  alreadyClicked = () => {
-    let allUnclicked = this.state.chars.map(char => {
+  handleIncorrect = () => {
+    const allUnclicked = this.state.characters.map(char => {
       char.clicked = false;
       return char;
     });
     this.setState(
       {
         score: 0,
-        chars: allUnclicked,
-        message: "You already clicked that one... Resetting score!"
+        characters: allUnclicked,
+        userMessage: "You already clicked that one... Resetting score!"
       },
       () => {
         this.shuffle();
       }
     );
   };
-  winGame = () =>{
-    let allUnclicked = this.state.chars.map(char => {
+  winGame = () => {
+    const allUnclicked = this.state.characters.map(char => {
       char.clicked = false;
       return char;
     });
     this.setState({
-      chars: allUnclicked,
-      update: "You got all 12 in a row, you win!!!", 
+      characters: allUnclicked,
+      instructionsMessage: "You got all 12 in a row, you win!!!",
       topScore: 0,
       score: 0
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -101,12 +104,12 @@ class Main extends Component {
         <Header
           score={this.state.score}
           topScore={this.state.topScore}
-          message={this.state.message}
+          userMessage={this.state.userMessage}
         />
-        <Instructions closed={this.state.topScore} update={this.state.update} />
+        <Instructions closed={this.state.topScore} instructionsMessage={this.state.instructionsMessage} />
         <div className="container">
-          {this.state.chars &&
-            this.state.chars.map(char => {
+          {this.state.characters &&
+            this.state.characters.map(char => {
               return (
                 <Character
                   key={char.id}
